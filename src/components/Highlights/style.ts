@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import highlight1 from '@public/highlight1.png';
 
 export const Container = styled.section`
   max-width: 1120px;
@@ -8,28 +7,48 @@ export const Container = styled.section`
   display: grid;
   margin-top: 80px;
   height: 350px;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(524px, 2fr) minmax(240px, 1fr)
+  );
   gap: 20px;
 
-  .banner {
-    display: flex;
-    align-items: flex-end;
-    padding: 15px 30px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right, left;
-    box-shadow: 0px -150px 50px -110px
-      ${({ theme }) => theme.colors.body_Background} inset;
+  .banner__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
   }
 
   .banner--larger {
-    background-image: url(${highlight1.src});
     grid-row: 1/3;
-    font-size: 2.4rem;
+    .picture .image__tag {
+      padding: 4px 18px;
+      font-size: 1.4rem;
+      top: 17px;
+      left: 30px;
+    }
+    .banner__text {
+      font-size: 2.4rem;
+      padding: 15px 30px;
+      bottom: 15px;
+    }
   }
   .banner--smaller {
-    background-image: url(${highlight1.src});
     font-size: 1.3rem;
+    .picture .image__tag {
+      padding: 2px 16px;
+      font-size: 1.4rem;
+      top: 10px;
+      left: 10px;
+      font-size: 1.2rem;
+    }
+
+    .banner__text {
+      padding: 0 20px 10px 15px;
+      font-size: 1.3rem;
+    }
   }
 `;

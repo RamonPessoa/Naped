@@ -2,6 +2,7 @@ import Nav from '@components/Nav';
 import Head from 'next/head';
 import Hero from '@components/Hero';
 import Highlights from '@components/Highlights';
+import ScrollNews from '@components/ScrollNews';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Nav />
       <Hero />
       <Highlights />
+      <ScrollNews />
     </>
   );
 };
