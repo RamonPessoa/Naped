@@ -5,6 +5,8 @@ import { Container } from './style';
 const Aside = () => {
   return (
     <Container>
+      <h2 className='aside__title'>Lorem ipsum dolor</h2>
+      <div className='aside__divisor'></div>
       <ul>
         <li>
           <Banner customClass='banner--aside' image={highlight1.src} />

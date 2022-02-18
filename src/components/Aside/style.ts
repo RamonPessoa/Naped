@@ -1,7 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.aside`
+  .aside__title {
+    font-size: 2.4rem;
+    font-weight: 400;
+  }
+  .aside__divisor {
+    margin-top: 13px;
+    max-width: 250px;
+    width: 100%;
+    height: 3px;
+    background: ${({ theme }) => theme.colors.purple_light};
+  }
+
   ul {
+    margin-top: 14px;
     display: flex;
     flex-direction: column;
     max-width: 338px;
