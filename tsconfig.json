@@ -27,7 +27,9 @@
     "paths": {
       "@components/*": ["./src/components/*"],
       "@styles/*": ["./src/styles/*"],
-      "@public/*": ["./public/*"]
+      "@public/*": ["./public/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@configs/*": ["src/configs/*"]
     }
   },
   "exclude": [

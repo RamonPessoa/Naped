@@ -10,11 +10,24 @@ const NewsList = () => {
   const [numberOfPages, setNumberOfPages] = useState<number>(1);
   const [paginationButtons, setPaginationButtons] = useState<Array<number>>([]);
   const [activeButton, setActiveButton] = useState<number>(1);
+  const [buttonsToShow, setButtonsToShow] = useState<Array<number>>([]);
+
+  const defineButtons = () => {
+    const buttons: Array<number> = [];
+    buttons.push(paginationButtons[0]);
+    buttons.push(paginationButtons[1]);
+    if (currentPage > 2) buttons[1] = currentPage;
+    if (currentPage === numberOfPages) buttons[1] = numberOfPages - 1;
+    buttons.push(numberOfPages);
+    // if (currentPage === buttons[2]) buttons.splice(1, 1);
+
+    setButtonsToShow(buttons);
+  };
 
   const element = (): Array<JSX.Element> => {
     const list: Array<JSX.Element> = [];
     for (let i = 299; i > 0; i--) {
-      list.push(<Banner image={highlight1.src} />);
+      list.push(<Banner key={`banner${i}`} image={highlight1.src} />);
     }
 
     return list;
@@ -31,10 +44,10 @@ const NewsList = () => {
     )
       return;
     if (direction === 'left') {
-      setCurrentPage(currentPage - 1);
+      setCurrentPage((oldPage) => oldPage - 1);
       setActiveButton(currentPage);
     } else {
-      setCurrentPage(currentPage + 1);
+      setCurrentPage((oldPage) => oldPage + 1);
     }
   };
 
@@ -56,7 +69,7 @@ const NewsList = () => {
   };
 
   useEffect(() => {
-    setlist([...element()]);
+    setlist(element());
   }, []);
 
   useEffect(() => {
@@ -70,26 +83,42 @@ const NewsList = () => {
   useEffect(() => {
     buildPagination();
   }, [numberOfPages]);
+
+  useEffect(() => {
+    defineButtons();
+  }, [paginationButtons, currentPage]);
   return (
     <Container>
       <ul className='newsList'>
         {buildPage(currentPage).map((el: React.ReactNode, index: number) => (
-          <li className='newsList__item' key={index}>
+          <li className='newsList__item' key={`news${index}`}>
             {el}
           </li>
         ))}
       </ul>
+
       <ul className='pagination'>
         <button onClick={() => handleOnePage('left')}>{'<'}</button>
-        {paginationButtons.map((el: number, index: number) => (
-          <button
-            className={el === activeButton ? 'button--active' : ''}
-            key={index}
-            onClick={() => handlePagination(el)}
-          >
-            {el}
-          </button>
-        ))}
+        {buttonsToShow.map((el: number, index: number) => {
+          return (
+            <React.Fragment key={`fragment${index}`}>
+              {el !== 2 && el !== 1 && el !== numberOfPages && (
+                <button>...</button>
+              )}
+              <button
+                className={el === activeButton ? 'button--active' : ''}
+                onClick={() => handlePagination(el)}
+              >
+                {el}
+              </button>
+
+              {el >= 2 && el !== numberOfPages - 1 && el !== numberOfPages && (
+                <button>...</button>
+              )}
+            </React.Fragment>
+          );
+        })}
+
         <button onClick={() => handleOnePage('right')}>{'>'}</button>
       </ul>
     </Container>
