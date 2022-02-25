@@ -40,7 +40,7 @@ const News = sequelize.define(
 );
 
 export default async function handle(
-  req: NextApiRequest,
+  _req: NextApiRequest,
   res: NextApiResponse
 ) {
   const result = await News.findAll();

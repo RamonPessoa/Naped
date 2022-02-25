@@ -1,27 +1,36 @@
 import Picture from '@components/Picture';
 import { Container } from './style';
+import Link from 'next/link';
 
 type MyProps = {
   image: string;
+  date: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  id: number;
 };
 
-const HorizontalNew = ({ image }: MyProps) => {
+const HorizontalNew = ({
+  image,
+  date,
+  title,
+  subtitle,
+  category,
+  id,
+}: MyProps) => {
   return (
     <Container>
       <div className='view'>
         <Picture className='view__picture' image={image} />
       </div>
       <div className='horizontalNew__content'>
-        <p className='content__title'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros
-          tellus, malesuada et velit in, blandit molestie dolor.
-        </p>
-        <p className='content__text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros
-          tellus, malesuada et velit in, blandit molestie dolor.
-        </p>
-        <span className='content__date'>00/00/0000</span>
-        <button className='content__button'>Ler notícia</button>
+        <p className='content__title'>{title}</p>
+        <p className='content__text'>{subtitle}</p>
+        <span className='content__date'>{date}</span>
+        <Link href={`/${category}/news/${id}`}>
+          <button className='content__button'>Ler notícia</button>
+        </Link>
       </div>
     </Container>
   );

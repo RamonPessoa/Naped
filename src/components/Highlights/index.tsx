@@ -1,15 +1,37 @@
 import Banner from '@components/Banner';
 import { Container } from './style';
-import highlight1 from '@public/highlight1.png';
-import highlight2 from '@public/highlight2.png';
-import highlight3 from '@public/highlight3.png';
+import { MyProps } from '@components/ScrollNews';
+import { useEffect } from 'react';
 
-const Highlights = () => {
+const Highlights = ({ news }: MyProps) => {
+  let myNews = news;
+  const highlights = () => {
+    if (news) {
+      myNews = news.slice(0, 2);
+      console.log(myNews);
+    }
+  };
+
+  useEffect(() => {
+    highlights();
+  }, [news]);
   return (
     <Container>
-      <Banner image={highlight1.src} customClass='banner--larger' />
-      <Banner image={highlight2.src} customClass='banner--smaller banner--2' />
-      <Banner image={highlight3.src} customClass='banner--smaller banner--3' />
+      <Banner
+        title={myNews && myNews[0].title}
+        image={myNews && myNews[0].images.picture_1}
+        customClass='banner--larger'
+      />
+      <Banner
+        title={myNews && myNews[1].title}
+        image={myNews && myNews[1].images.picture_1}
+        customClass='banner--smaller banner--2'
+      />
+      <Banner
+        title={myNews && myNews[2].title}
+        image={myNews && myNews[2].images.picture_1}
+        customClass='banner--smaller banner--3'
+      />
     </Container>
   );
 };

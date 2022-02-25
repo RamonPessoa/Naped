@@ -29,7 +29,8 @@
       "@styles/*": ["./src/styles/*"],
       "@public/*": ["./public/*"],
       "@contexts/*": ["./src/contexts/*"],
-      "@configs/*": ["src/configs/*"]
+      "@configs/*": ["./src/configs/*"],
+      "@pages/*": ["./pages/*"]
     }
   },
   "exclude": [

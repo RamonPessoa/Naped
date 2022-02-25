@@ -1,7 +1,4 @@
 module.exports = {
-  images: {
-    domains: ['i.annihil.us']
-  },
   async redirects() {
     return [
       {

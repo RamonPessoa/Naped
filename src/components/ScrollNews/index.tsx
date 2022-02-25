@@ -1,48 +1,57 @@
 import Aside from '@components/Aside';
-import { Container } from './style';
-import highlight1 from '@public/highlight1.png';
 import HorizontalNew from '@components/HorizontalNew';
+import { useEffect } from 'react';
+import { Container } from './style';
 
-const ScrollNews = () => {
+export type Article = {
+  id: number;
+  title: string;
+  subtitle: string;
+  images: Record<string, string>;
+  date: Date;
+  category: string;
+  article: string;
+};
+
+export type MyProps = {
+  news?: Array<Article>;
+};
+
+const ScrollNews = ({ news }: MyProps) => {
+  let myNews = news;
+  const sortNews = (news: Array<Article>) => {
+    news.forEach((el) => (el.date = new Date(el.date)));
+    news.sort((date1, date2) => date1.date.getTime() - date2.date.getTime());
+    return news;
+  };
+
+  useEffect(() => {
+    if (myNews) myNews = sortNews(myNews).reverse();
+  }, []);
+
+  const formatedDate = (date: Date): string => {
+    const myDate = new Date(date);
+    if (myDate) {
+      return `${myDate.getDate()}/${myDate.getMonth()}/${myDate.getFullYear()}`;
+    }
+    return '';
+  };
+
   return (
     <Container>
       <ul className='scrollArea'>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
-        <li>
-          <HorizontalNew image={highlight1.src} />
-        </li>
+        {myNews?.map((el) => (
+          <li key={`${el.title}_${el.id}`}>
+            <HorizontalNew
+              image={el.images.picture_1}
+              title={el.title}
+              subtitle={el.subtitle}
+              date={formatedDate(el.date)}
+              category={el.category}
+              id={el.id}
+            />
+          </li>
+        ))}
       </ul>
       <Aside />
     </Container>
