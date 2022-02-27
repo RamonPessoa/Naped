@@ -1,9 +1,8 @@
 import { Container } from './style';
 import Banner from '@components/Banner';
-import type { MyProps, Article } from '@components/ScrollNews';
 import { useEffect } from 'react';
 
-const RecentNews = ({ news }: MyProps) => {
+const RecentNews = ({ news }: NewsProps) => {
   let myNews = news;
   const sortNews = (news: Array<Article>) => {
     news.forEach((el) => (el.date = new Date(el.date)));

@@ -6,9 +6,8 @@ import ScrollNews from '@components/ScrollNews';
 import RecentNews from '@components/RecentNews';
 import Footer from '@components/Footer';
 import { instance } from '@configs/apiConfig';
-import type { MyProps } from '@components/ScrollNews';
 
-const Home = ({ news }: MyProps) => {
+const Home = ({ news }: NewsProps) => {
   return (
     <>
       <Head>

@@ -8,7 +8,7 @@ const Menu = () => {
         <Link href='/Home'>Home</Link>
       </li>
       <li>
-        <Link href='/Series'>Séries</Link>
+        <Link href='/category/Series'>Séries</Link>
       </li>
       <li>
         <Link href='/Filmes'>Filmes</Link>

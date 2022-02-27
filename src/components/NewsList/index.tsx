@@ -1,6 +1,5 @@
 import Banner from '@components/Banner';
 import highlight1 from '@public/highlight1.png';
-// eslint-disable-next-line no-use-before-define
 import React, { useEffect, useState } from 'react';
 import { Container } from './style';
 

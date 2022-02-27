@@ -1,9 +1,8 @@
 import Banner from '@components/Banner';
 import { Container } from './style';
-import { MyProps } from '@components/ScrollNews';
 import { useEffect } from 'react';
 
-const Highlights = ({ news }: MyProps) => {
+const Highlights = ({ news }: NewsProps) => {
   let myNews = news;
   const highlights = () => {
     if (news) {

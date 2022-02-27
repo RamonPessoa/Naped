@@ -3,21 +3,7 @@ import HorizontalNew from '@components/HorizontalNew';
 import { useEffect } from 'react';
 import { Container } from './style';
 
-export type Article = {
-  id: number;
-  title: string;
-  subtitle: string;
-  images: Record<string, string>;
-  date: Date;
-  category: string;
-  article: string;
-};
-
-export type MyProps = {
-  news?: Array<Article>;
-};
-
-const ScrollNews = ({ news }: MyProps) => {
+const ScrollNews = ({ news }: NewsProps) => {
   let myNews = news;
   const sortNews = (news: Array<Article>) => {
     news.forEach((el) => (el.date = new Date(el.date)));
