@@ -14,18 +14,14 @@ export const Container = styled.section`
     background: black;
   }
 
-  .newsList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(338px, 338px));
-    grid-template-rows: repeat(4, 250px);
-    grid-auto-flow: column;
+  .list__items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 40px;
-    overflow-x: scroll;
-    ::-webkit-scrollbar {
-      height: 0;
-    }
+    height: 1120px;
 
-    .newsList__item {
+    li {
       max-width: 338px;
       .banner {
         width: 338px;
@@ -37,7 +33,7 @@ export const Container = styled.section`
     }
   }
 
-  .pagination {
+  .list__buttons {
     display: flex;
     gap: 8px;
 

@@ -15,9 +15,6 @@ const Home = ({ news }: NewsProps) => {
   const [notFound, setNotFound] = useState(true);
   const router = useRouter();
   const { category } = router.query;
-  const myNews = news?.find(
-    (el) => el.category === (category as string).toLowerCase()
-  );
 
   const pageTitle = (category: string) => {
     const options: Record<string, string> = {
@@ -32,14 +29,14 @@ const Home = ({ news }: NewsProps) => {
 
   useEffect(() => {
     if (
-      category === 'series' ||
-      category === 'filmes' ||
-      category === 'animes' ||
-      category === 'games'
+      (category as string).toLowerCase() === 'series' ||
+      (category as string).toLowerCase() === 'filmes' ||
+      (category as string).toLowerCase() === 'animes' ||
+      (category as string).toLowerCase() === 'games'
     ) {
       setNotFound(false);
     }
-    if (!myNews) setNotFound(true);
+    if (!news) setNotFound(true);
   }, []);
 
   if (notFound) return <E404 />;
@@ -55,14 +52,16 @@ const Home = ({ news }: NewsProps) => {
         title={pageTitle(category as string)}
       />
       <Search />
-      <NewsList />
+      <NewsList news={news} />
       <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const category = ctx.params?.category;
+  const queryCategory = ctx.params?.category;
+  const category = queryCategory?.toString().toLowerCase();
+  console.log(category);
   try {
     const { data } = await instance.get(`/api/${category}`);
     const news = JSON.parse(JSON.stringify(data));
