@@ -1,6 +1,6 @@
 import { Container } from './style';
 type MyProps = {
-  image: string;
+  image?: string;
   title: string;
 };
 

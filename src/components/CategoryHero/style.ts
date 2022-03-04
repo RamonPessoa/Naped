@@ -21,8 +21,9 @@ export const Container = styled.section`
   .categoryHero__image {
     width: 100%;
     height: 300px;
-    background: url(${({ image }: { image: string }) => image});
+    background: url(${({ image }: { image: string | undefined }) => image});
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
   }
 

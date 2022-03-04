@@ -4,10 +4,12 @@ import React, { useEffect, useState } from 'react';
 
 const NEWS_PER_PAGE = 12;
 
-export default function NewsList({ news }: NewsProps) {
-  const [visibleNews, setVisibleNews] = useState<Array<Article> | undefined>(
-    news
-  );
+interface MyProps extends NewsProps {
+  category: string;
+}
+
+export default function NewsList({ news, category }: MyProps) {
+  const [visibleNews, setVisibleNews] = useState<Array<Article> | undefined>();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pagesButtons, setPagesButtons] = useState<number[]>();
   const newsAmount = news?.length;
@@ -16,7 +18,7 @@ export default function NewsList({ news }: NewsProps) {
     const listStart = (page - 1) * NEWS_PER_PAGE;
     const listEnd = listStart + NEWS_PER_PAGE;
     if (!newsAmount) return;
-    if (newsAmount > 12) setVisibleNews(news?.slice(listStart, listEnd));
+    setVisibleNews(() => news?.slice(listStart, listEnd));
   };
 
   const buildButtons = () => {
@@ -40,14 +42,22 @@ export default function NewsList({ news }: NewsProps) {
   useEffect(() => {
     getNews(currentPage);
     buildButtons();
-  }, [currentPage]);
+  }, [currentPage, news]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [category]);
 
   return (
     <Container>
       <ul className='list__items'>
         {visibleNews?.map((news) => (
           <li key={`${news.category}_${news.id}`}>
-            <Banner image={news.images.picture_1} title={news.title} />
+            <Banner
+              link={`./${news.category}/news/${news.id}`}
+              image={news.images.picture_1}
+              title={news.title}
+            />
           </li>
         ))}
       </ul>

@@ -1,19 +1,9 @@
 import Aside from '@components/Aside';
 import HorizontalNew from '@components/HorizontalNew';
-import { useEffect } from 'react';
 import { Container } from './style';
 
 const ScrollNews = ({ news }: NewsProps) => {
-  let myNews = news;
-  const sortNews = (news: Array<Article>) => {
-    news.forEach((el) => (el.date = new Date(el.date)));
-    news.sort((date1, date2) => date1.date.getTime() - date2.date.getTime());
-    return news;
-  };
-
-  useEffect(() => {
-    if (myNews) myNews = sortNews(myNews).reverse();
-  }, []);
+  const myNews = news;
 
   const formatedDate = (date: Date): string => {
     const myDate = new Date(date);
@@ -39,7 +29,7 @@ const ScrollNews = ({ news }: NewsProps) => {
           </li>
         ))}
       </ul>
-      <Aside />
+      <Aside news={news} />
     </Container>
   );
 };

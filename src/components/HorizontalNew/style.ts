@@ -16,7 +16,6 @@ export const Container = styled.div`
       }
     }
     :hover {
-      cursor: pointer;
       .view__picture {
         .image {
           transform: scale(1.05);
@@ -52,6 +51,9 @@ export const Container = styled.div`
       border-radius: 3px;
       font-weight: 600;
       border: none;
+      :hover {
+        cursor: pointer;
+      }
     }
   }
 `;

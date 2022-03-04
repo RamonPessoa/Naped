@@ -28,7 +28,7 @@ const HorizontalNew = ({
         <p className='content__title'>{title}</p>
         <p className='content__text'>{subtitle}</p>
         <span className='content__date'>{date}</span>
-        <Link href={`/${category}/news/${id}`}>
+        <Link href={`/category/${category}/news/${id}`}>
           <button className='content__button'>Ler notícia</button>
         </Link>
       </div>

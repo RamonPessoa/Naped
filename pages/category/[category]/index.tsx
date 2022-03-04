@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Nav from '@components/Nav';
 import CategoryHero from '@components/CategoryHero';
-import highlight1 from '@public/highlight1.png';
 import Search from '@components/Search';
 import NewsList from '@components/NewsList';
 import Footer from '@components/Footer';
@@ -15,6 +14,7 @@ const Home = ({ news }: NewsProps) => {
   const [notFound, setNotFound] = useState(true);
   const router = useRouter();
   const { category } = router.query;
+  const [myNews, setMyNews] = useState<Array<Article>>();
 
   const pageTitle = (category: string) => {
     const options: Record<string, string> = {
@@ -36,8 +36,22 @@ const Home = ({ news }: NewsProps) => {
     ) {
       setNotFound(false);
     }
-    if (!news) setNotFound(true);
-  }, []);
+    if (
+      news?.filter(
+        (news) => news.category === (category as string).toLowerCase()
+      ).length === 0
+    ) {
+      setNotFound(true);
+    }
+  }, [category]);
+
+  useEffect(() => {
+    setMyNews(() =>
+      news?.filter(
+        (news) => news.category === (category as string).toLowerCase()
+      )
+    );
+  }, [category]);
 
   if (notFound) return <E404 />;
 
@@ -48,11 +62,11 @@ const Home = ({ news }: NewsProps) => {
       </Head>
       <Nav />
       <CategoryHero
-        image={highlight1.src}
-        title={pageTitle(category as string)}
+        image={myNews && myNews[0].images.picture_1}
+        title={pageTitle((category as string).toLowerCase())}
       />
       <Search />
-      <NewsList news={news} />
+      <NewsList category={category as string} news={myNews} />
       <Footer />
     </>
   );
