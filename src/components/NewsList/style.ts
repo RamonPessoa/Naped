@@ -19,7 +19,7 @@ export const Container = styled.section`
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
-    height: 1120px;
+    /* height: 1120px; */
 
     li {
       max-width: 338px;
@@ -35,6 +35,9 @@ export const Container = styled.section`
 
   .list__buttons {
     display: flex;
+    max-width: 300px;
+    width: 100%;
+    justify-content: center;
     gap: 8px;
 
     button {

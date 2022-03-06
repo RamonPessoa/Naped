@@ -9,10 +9,11 @@ const RecentNews = ({ news }: NewsProps) => {
     setMyNews(() => {
       news?.forEach((news) => (news.date = new Date(news.date)));
       const sorted =
-        news && [...news]?.sort((news) => news.date.getDate() - Date.now());
+        news && [...news]?.sort((news) => Date.now() - news.date.getDate());
       return sorted?.slice(0, 6);
     });
   }, []);
+
   return (
     <Container>
       <div className='recents'>

@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import E404 from '@pages/404';
 
 const Home = ({ news }: NewsProps) => {
-  const [notFound, setNotFound] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const router = useRouter();
   const { category } = router.query;
   const [myNews, setMyNews] = useState<Array<Article>>();
@@ -28,14 +28,6 @@ const Home = ({ news }: NewsProps) => {
   };
 
   useEffect(() => {
-    if (
-      (category as string).toLowerCase() === 'series' ||
-      (category as string).toLowerCase() === 'filmes' ||
-      (category as string).toLowerCase() === 'animes' ||
-      (category as string).toLowerCase() === 'games'
-    ) {
-      setNotFound(false);
-    }
     if (
       news?.filter(
         (news) => news.category === (category as string).toLowerCase()

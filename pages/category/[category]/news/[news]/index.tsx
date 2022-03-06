@@ -31,6 +31,25 @@ const News = ({ sNews }: MyProps) => {
 
   const paragraphs = article?.article.split('\\n');
 
+  const getMonth = (month: number) => {
+    const months: Record<number, string> = {
+      1: 'Janeiro',
+      2: 'Fevereiro',
+      3: 'Março',
+      4: 'Abril',
+      5: 'Maio',
+      6: 'Junho',
+      7: 'Julho',
+      8: 'Agosto',
+      9: 'Setembro',
+      10: 'Outubro',
+      11: 'Novembro',
+      12: 'Dezembro',
+    };
+
+    return months[month];
+  };
+
   if (!article) {
     console.log(article);
     return <E404 />;
@@ -44,9 +63,9 @@ const News = ({ sNews }: MyProps) => {
         <h4>{article?.subtitle}</h4>
         <p className='news__date'>
           {article &&
-            `${article.date.getDate()}/${
+            `${article.date.getDate()} de ${getMonth(
               article.date.getMonth() + 1
-            }/${article.date.getFullYear()}`}
+            )} de ${article.date.getFullYear()}`}
         </p>
         <div className='thumb'></div>
         <div className='news__article'>
@@ -55,7 +74,7 @@ const News = ({ sNews }: MyProps) => {
           ))}
         </div>
       </Container>
-      <RecentNews />
+      <RecentNews news={sNews} />
       <Footer />
     </React.StrictMode>
   );
