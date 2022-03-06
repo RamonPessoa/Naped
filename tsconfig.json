@@ -27,7 +27,10 @@
     "paths": {
       "@components/*": ["./src/components/*"],
       "@styles/*": ["./src/styles/*"],
-      "@public/*": ["./public/*"]
+      "@public/*": ["./public/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@configs/*": ["./src/configs/*"],
+      "@pages/*": ["./pages/*"]
     }
   },
   "exclude": [
@@ -36,6 +39,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
   ]
 }

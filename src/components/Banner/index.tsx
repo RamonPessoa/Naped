@@ -1,15 +1,21 @@
+import Picture from '@components/Picture';
+import { Container } from './style';
+import Link from 'next/link';
 type MyProps = {
-  customClass: string;
+  customClass?: string;
+  image?: string;
+  title?: string;
+  link: string;
 };
 
-const Banner = ({ customClass }: MyProps) => {
+const Banner = ({ customClass, image, title, link }: MyProps) => {
   return (
-    <div className={`banner ${customClass}`}>
-      <p className='banner__text'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros
-        tellus, malesuada et velit in, blandit molestie dolor.
-      </p>
-    </div>
+    <Link href={link}>
+      <Container className={`banner ${customClass}`}>
+        <Picture className='picture' image={image} />
+        <p className='banner__text'>{title}</p>
+      </Container>
+    </Link>
   );
 };
 

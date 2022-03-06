@@ -1,4 +1,7 @@
 {
+  "globals": {
+    "JSX": true
+  },
     "env": {
         "browser": true,
         "es2021": true,
@@ -22,6 +25,8 @@
         "@typescript-eslint"
     ],
     "rules": {
-      "react/react-in-jsx-scope": "off"
+      "react/react-in-jsx-scope": "off",
+      "no-use-before-define": "off",
+      "no-undef": "off"
     }
 }

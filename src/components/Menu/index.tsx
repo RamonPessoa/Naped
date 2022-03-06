@@ -8,16 +8,16 @@ const Menu = () => {
         <Link href='/Home'>Home</Link>
       </li>
       <li>
-        <Link href='/Series'>Séries</Link>
+        <Link href='/category/Series'>Séries</Link>
       </li>
       <li>
-        <Link href='/Filmes'>Filmes</Link>
+        <Link href='/category/Filmes'>Filmes</Link>
       </li>
       <li>
-        <Link href='/Animes'>Animes</Link>
+        <Link href='/category/Animes'>Animes</Link>
       </li>
       <li>
-        <Link href='/Games'>Games</Link>
+        <Link href='/category/Games'>Games</Link>
       </li>
     </Container>
   );
